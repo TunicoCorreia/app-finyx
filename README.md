@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finyx - Gestão Financeira Premium
 
-## Getting Started
+Sistema completo de gestão financeira com interface moderna e recursos avançados.
 
-First, run the development server:
+## 🚀 Funcionalidades
+
+- ✅ Dashboard interativo com gráficos
+- ✅ Registro de transações (receitas e despesas)
+- ✅ Registro por voz com IA
+- ✅ Gestão de contas bancárias
+- ✅ Metas financeiras
+- ✅ Relatórios e análises
+- ✅ Exportação de planilhas
+- ✅ Sugestões inteligentes com IA
+- ✅ Gestão de empresas/fornecedores
+
+## 📋 Pré-requisitos
+
+- Node.js 18+ instalado
+- Conta no Supabase (gratuita)
+- Conta na OpenAI (para recursos de IA)
+
+## 🔧 Configuração
+
+### 1. Instalar Dependências
+
+```bash
+npm install
+```
+
+### 2. Configurar Variáveis de Ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
+
+```env
+# Supabase (Obrigatório)
+NEXT_PUBLIC_SUPABASE_URL="sua_url_do_supabase"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="sua_chave_anonima"
+SUPABASE_SERVICE_ROLE_KEY="sua_chave_de_servico"
+
+# PostgreSQL (Opcional - se não usar Supabase)
+DATABASE_URL="postgresql://usuario:senha@host:5432/database"
+
+# OpenAI (Opcional - para recursos de IA)
+OPENAI_API_KEY="sua_chave_openai"
+```
+
+### 3. Configurar Banco de Dados Supabase
+
+1. Acesse o [Supabase Dashboard](https://app.supabase.com)
+2. Crie um novo projeto ou selecione um existente
+3. Vá em **SQL Editor**
+4. Copie e execute o conteúdo do arquivo `supabase-init.sql`
+5. Aguarde a criação das tabelas e índices
+
+### 4. Obter Credenciais do Supabase
+
+1. No Supabase Dashboard, vá em **Settings** → **API**
+2. Copie a **URL** e cole em `NEXT_PUBLIC_SUPABASE_URL`
+3. Copie a **anon/public key** e cole em `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Copie a **service_role key** e cole em `SUPABASE_SERVICE_ROLE_KEY`
+
+## 🏃 Executar o Projeto
+
+### Modo Desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Modo Produção
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 📦 Deploy
 
-To learn more about Next.js, take a look at the following resources:
+### Vercel (Recomendado)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Faça push do código para GitHub
+2. Importe o projeto no [Vercel](https://vercel.com)
+3. Configure as variáveis de ambiente no Vercel
+4. Deploy automático!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Outras Plataformas
 
-## Deploy on Vercel
+O projeto é compatível com qualquer plataforma que suporte Next.js 15:
+- Netlify
+- Railway
+- Render
+- AWS Amplify
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔍 Verificação de Ambiente
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O sistema verifica automaticamente se todas as variáveis estão configuradas:
+
+- ✅ Verde: Tudo configurado
+- ⚠️ Amarelo: Variáveis opcionais faltando
+- ❌ Vermelho: Variáveis obrigatórias faltando
+
+## 📊 Estrutura do Banco de Dados
+
+### Tabelas Principais
+
+- **transactions**: Receitas e despesas
+- **accounts**: Contas bancárias
+- **goals**: Metas financeiras
+- **companies**: Empresas/fornecedores
+
+Todas as tabelas incluem:
+- `id`: UUID único
+- `created_at`: Data de criação
+- `updated_at`: Data de atualização automática
+
+## 🛠️ Tecnologias
+
+- **Next.js 15**: Framework React
+- **TypeScript**: Tipagem estática
+- **Tailwind CSS v4**: Estilização
+- **Supabase**: Banco de dados PostgreSQL
+- **Shadcn/ui**: Componentes UI
+- **Recharts**: Gráficos interativos
+- **OpenAI**: Inteligência artificial
+- **Lucide Icons**: Ícones modernos
+
+## 🐛 Troubleshooting
+
+### Erro: "DATABASE_URL não configurada"
+
+Configure a variável `DATABASE_URL` no `.env.local` ou use o Supabase.
+
+### Erro: "Supabase não configurado"
+
+1. Verifique se as variáveis `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY` estão corretas
+2. Execute o script `supabase-init.sql` no SQL Editor do Supabase
+3. Reinicie o servidor de desenvolvimento
+
+### Erro ao carregar transações
+
+1. Verifique se as tabelas foram criadas no Supabase
+2. Verifique as políticas RLS (Row Level Security)
+3. Confira os logs do console do navegador
+
+## 📝 Licença
+
+Este projeto é privado e proprietário.
+
+## 🤝 Suporte
+
+Para suporte, entre em contato através do email ou abra uma issue no repositório.
+
+---
+
+Desenvolvido com ❤️ usando Next.js e Supabase
